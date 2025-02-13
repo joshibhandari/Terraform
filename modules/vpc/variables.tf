@@ -110,7 +110,7 @@ variable "one_nat_gateway_per_az" {
 variable "azs" {
     description = "Availability zone for public subnet"
     type = list(string)
-    default = []
+    default = ["us-west-2a", "us-west-2b"]
 }
 
 variable "public_subnet_names" {
@@ -171,6 +171,12 @@ variable "public_route_table_tags" {
   description = "Additional tags for the public route tables"
   type        = map(string)
   default     = {}
+}
+
+variable "public_subnet_ipv6_native" {
+  description = "Indicates whether to create an IPv6-only subnet. Default: `false`"
+  type        = bool
+  default     = false
 }
 
 ############################### Private Subnet ###########################
@@ -235,12 +241,18 @@ variable "create_private_nat_gateway_route" {
   default     = true
 }
 
+variable "private_subnet_ipv6_native" {
+  description = "Indicates whether to create an IPv6-only subnet. Default: `false`"
+  type        = bool
+  default     = false
+}
+
 ############################## NAT Gateway ####################
 
 variable "enable_nat_gateway" {
   description = "Should be true if you want to provision NAT Gateways for each of your private networks"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "single_nat_gateway" {
