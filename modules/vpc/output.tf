@@ -4,9 +4,19 @@ locals {
 }
 
 ########################### VPC ######################
+# output "vpc_id" {
+#   description = "The ID of the created VPC"
+#   value       = aws_vpc.main[0].id
+# }
+
+# output "vpc_id" {
+#   description = "The ID of the VPC"
+#   value       = try(aws_vpc.main[0].id, null)
+# }
+
 output "vpc_id" {
-  description = "The ID of the VPC"
-  value       = try(aws_vpc.main[0].id, null)
+  description = "The ID of the created VPC"
+  value       = try(aws_vpc_ipv4_cidr_block_association.this[0].vpc_id, aws_vpc.main[0].id, "")
 }
 
 output "vpc_arn" {

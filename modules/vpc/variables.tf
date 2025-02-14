@@ -2,7 +2,6 @@
 variable "create_vpc" {
   description = "Controls if VPC should be created (it affects almost all resources)"
   type        = bool
-  default     = true
 }
 
 variable "final_vpc" {
@@ -92,7 +91,7 @@ variable "igw_tags" {
 variable "public_subnets" {
   description = "A list of public subnets inside the VPC"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+  default     = ["10.0.1.0/24"]
 }
 
 variable "public_subnet_cidr" {
@@ -258,7 +257,7 @@ variable "enable_nat_gateway" {
 variable "single_nat_gateway" {
   description = "Should be true if you want to provision a single shared NAT Gateway across all of your private networks"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "reuse_nat_ips" {
